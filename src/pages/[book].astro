@@ -3,6 +3,10 @@ import Layout from "../layouts/Layout.astro";
 import { books } from "../utils/data";
 const { book } = Astro.params
 
+export function getStaticPaths() {
+    return books.map((b) => ({ params: { book: b.id } }))    
+}
+
 const info = books.find((b) => b.id === book);
 
 if(!info) {
