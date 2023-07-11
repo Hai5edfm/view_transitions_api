@@ -10,11 +10,12 @@ const fetchPage = async (url) => {
 
     // regex to get the body content
     const body = html.match(/<body[^>]*>([\s\S]*)<\/body>/i)[1];
+    console.log("🚀 ~ file: navigation.js:13 ~ fetchPage ~ body:", { body })
 
     // update the page title
-    const title = html.match(/<title[^>]*>([\s\S]*)<\/title>/i)[1];
+    // const title = html.match(/<title[^>]*>([\s\S]*)<\/title>/i)[1];
 
-    return [body, title];
+    return [body];
 }
     
 
@@ -26,17 +27,13 @@ export const startViewTransition = () => {
         const toUrl = new URL(event.destination.url);
 
         // if it is an external link, open it in a new tab
-        if (toUrl.origin !== window.location.origin) {
-            window.open(event.destination.url, '_blank');
-            event.preventDefault();
-        } 
-
+        if (toUrl.origin !== window.location.origin) return;
+        
         event.intercept({
             async handler() {
 
-                const [body, title] = await fetchPage(toUrl.pathname);
-                
-                document.title = title;
+                const [body] = await fetchPage(toUrl.pathname);
+
                 // update the page content
                 document.startViewTransition(() => {
 
