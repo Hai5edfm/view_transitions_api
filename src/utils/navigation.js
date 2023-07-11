@@ -12,7 +12,7 @@ const fetchPage = async (url) => {
     const body = html.match(/<body>([\s\S]*)<\/body>/i)[1];
 
     // update the page title
-    // const title = html.match(/<title[^>]*>([\s\S]*)<\/title>/i)[1];
+    // const title = html.match(/<title>([\s\S]*)<\/title>/i)[1];
 
     return [body];
 }
