@@ -10,7 +10,6 @@ const fetchPage = async (url) => {
 
     // regex to get the body content
     const body = html.match(/<body[^>]*>([\s\S]*)<\/body>/i)[1];
-    console.log("🚀 ~ file: navigation.js:13 ~ fetchPage ~ body:", { body })
 
     // update the page title
     // const title = html.match(/<title[^>]*>([\s\S]*)<\/title>/i)[1];
@@ -37,7 +36,7 @@ export const startViewTransition = () => {
                 // update the page content
                 document.startViewTransition(() => {
 
-                    document.getElementById('content').innerHTML = body;
+                    document.getElementById('content-app').innerHTML = body;
                     // scroll to the top
                     document.documentElement.scrollTop = 0;
 
