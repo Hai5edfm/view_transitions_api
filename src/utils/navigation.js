@@ -9,7 +9,7 @@ const fetchPage = async (url) => {
     const html = await response.text();
 
     // regex to get the body content
-    const body = html.match(/<body[^>]*>([\s\S]*)<\/body>/i)[1];
+    const body = html.match(/<body>([\s\S]*)<\/body>/i)[1];
 
     // update the page title
     // const title = html.match(/<title[^>]*>([\s\S]*)<\/title>/i)[1];
